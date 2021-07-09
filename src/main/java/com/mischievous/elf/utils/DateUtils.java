@@ -844,7 +844,7 @@ public class DateUtils
      * @param date
      * @return
      */
-    public static java.util.Date getDateOfBegin(java.util.Date date){
+    public static Date getDateOfBegin(Date date){
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
         calendar.set(Calendar.HOUR_OF_DAY, 0);
@@ -852,7 +852,7 @@ public class DateUtils
         calendar.set(Calendar.SECOND, 0);
         calendar.set(Calendar.MILLISECOND, 0);
 
-        java.util.Date result = new java.util.Date(calendar.getTimeInMillis());
+        Date result = new Date(calendar.getTimeInMillis());
         return result;
     }
 
@@ -861,7 +861,7 @@ public class DateUtils
      * @param date
      * @return
      */
-    public static java.util.Date getDateOfEnd(java.util.Date date){
+    public static Date getDateOfEnd(Date date){
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
         calendar.set(Calendar.HOUR_OF_DAY, 23);
@@ -869,7 +869,7 @@ public class DateUtils
         calendar.set(Calendar.SECOND, 59);
         calendar.set(Calendar.MILLISECOND, 0);
 
-        java.util.Date result = new java.util.Date(calendar.getTimeInMillis());
+        Date result = new Date(calendar.getTimeInMillis());
         return result;
     }
 

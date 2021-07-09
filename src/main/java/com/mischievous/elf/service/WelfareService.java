@@ -29,7 +29,6 @@ public interface WelfareService {
 
     int insertHistoryRecord(int fromNum, int toNum) throws Exception;
 
-
     /**
      * 查询最新一期开奖记录
      *

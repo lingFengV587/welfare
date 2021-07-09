@@ -13,6 +13,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
+import java.net.URL;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +31,9 @@ public class WelfareServiceImpl implements WelfareService {
     public int insertHistoryRecord() throws Exception {
         int count, totalCount = 0;
         try {
-            String fileUrl = FileConstant.FILE_PATH + WelfareConstant.NEWEST_RECORD_TXT;
+            String localFilePath = this.convertLocalFilePath(FileConstant.FILE_PATH);
+            String fileUrl = localFilePath + WelfareConstant.NEWEST_RECORD_TXT;
+            this.convertLocalFilePath(fileUrl);
             String newestRecord = FileUtils.readFileOneLine(fileUrl, 0);
             if (GloubFunc.isEmpty(newestRecord)) {
                 return totalCount;
@@ -71,11 +75,12 @@ public class WelfareServiceImpl implements WelfareService {
                 contentList.add(l.toString());
             }
 
-            FileUtils.writeFileContent(FileConstant.FILE_PATH + WelfareConstant.HISTORY_RECORD_TXT
+            String localFilePath = this.convertLocalFilePath(FileConstant.FILE_PATH);
+            FileUtils.writeFileContent(localFilePath + WelfareConstant.HISTORY_RECORD_TXT
                     , fileContent.toString(), true);
-            FileUtils.writeFileContent(FileConstant.FILE_PATH + WelfareConstant.NEWEST_RECORD_TXT
+            FileUtils.writeFileContent(localFilePath + WelfareConstant.NEWEST_RECORD_TXT
                     , lotteryList.get(0).toString(), false);
-            FileUtils.writeExcelContent(FileConstant.FILE_PATH + WelfareConstant.STATISTICS_EXCEL
+            FileUtils.writeExcelContent(localFilePath + WelfareConstant.STATISTICS_EXCEL
                     , FileConstant.STATISTICS_EXCEL_SHEET, contentList);
         } catch (Exception e) {
             logger.error("==insertHistoryRecord异常==", e);
@@ -88,7 +93,8 @@ public class WelfareServiceImpl implements WelfareService {
     public LotteryRecordDto queryNewestRecord() throws Exception {
         LotteryRecordDto lottery = null;
         try {
-            String fileUrl = FileConstant.FILE_PATH + WelfareConstant.NEWEST_RECORD_TXT;
+            String localFilePath = this.convertLocalFilePath(FileConstant.FILE_PATH);
+            String fileUrl = localFilePath + WelfareConstant.NEWEST_RECORD_TXT;
             String newestRecord = FileUtils.readFileOneLine(fileUrl, 0);
             if (GloubFunc.notEmpty(newestRecord)) {
                 lottery = this.convertStringToRecord(newestRecord);
@@ -100,6 +106,13 @@ public class WelfareServiceImpl implements WelfareService {
         return lottery;
     }
 
+    /**
+     * 解析页面数据
+     *
+     * @param xmlContent
+     * @return
+     * @throws Exception
+     */
     private List<LotteryRecordDto> analysisXMLBySelf(String xmlContent) throws Exception {
         List<LotteryRecordDto> lotteryList = new ArrayList<LotteryRecordDto>();
         xmlContent = xmlContent.split("<tbody id=\"tdata\">")[1]
@@ -151,7 +164,6 @@ public class WelfareServiceImpl implements WelfareService {
         return lotteryList;
     }
 
-
     /**
      * 转换开奖记录类型
      *
@@ -179,4 +191,33 @@ public class WelfareServiceImpl implements WelfareService {
         return lottery;
     }
 
+    private String convertLocalFilePath(String filePath) throws Exception {
+        String localPath = getClass()
+                .getClassLoader()
+                .getResource("/")
+                .toString();
+        localPath = URLDecoder.decode(localPath, "utf-8");
+
+        int index = localPath.indexOf("WEB-INF");
+        if(index == -1){
+            index = localPath.indexOf("classes");
+        }
+        if(index == -1){
+            index = localPath.indexOf("bin");
+        }
+        localPath = localPath.substring(0, index);
+
+        if(localPath.startsWith("zip")){
+            //当class文件在war中时，此时返回zip:D:/...这样的路径
+            localPath = localPath.substring(4);
+        }else if(localPath.startsWith("file")){
+            //当class文件在class文件中时，此时返回file:/D:/...这样的路径
+            localPath = localPath.substring(6);
+        }else if(localPath.startsWith("jar")){
+            //当class文件在jar文件里面时，此时返回jar:file:/D:/...这样的路径
+            localPath = localPath.substring(10);
+        }
+
+        return localPath + filePath;
+    }
 }
