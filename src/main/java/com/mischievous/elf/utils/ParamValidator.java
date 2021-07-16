@@ -9,10 +9,10 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @ClassName: ParamValidator
- * @Description: 参数校验
  * @author lifang
  * @version 1.0
+ * @ClassName: ParamValidator
+ * @Description: 参数校验
  * @CreateDate 2020/1/14
  */
 public class ParamValidator {

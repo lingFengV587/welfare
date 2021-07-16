@@ -20,8 +20,7 @@ import java.util.regex.Pattern;
 /**
  * 系统级工具类
  */
-public class GloubFunc
-{
+public class GloubFunc {
     protected static Logger logger = LoggerFactory.getLogger(GloubFunc.class);
 
     /**
@@ -31,15 +30,11 @@ public class GloubFunc
      * @desc 获得对象
      */
     public static Object refObject(String objName)
-        throws Exception
-    {
-        try
-        {
+            throws Exception {
+        try {
             Object objBean = Class.forName(objName);
             return objBean;
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             throw e;
         }
     }
@@ -50,8 +45,7 @@ public class GloubFunc
      * @param s
      * @return 不为空则返回true，否则返回false
      */
-    public static boolean notEmpty(String s)
-    {
+    public static boolean notEmpty(String s) {
         return s != null && !"".equals(s) && !"null".equals(s) && !"\u0000".equals(s);
     }
 
@@ -61,8 +55,7 @@ public class GloubFunc
      * @param s
      * @return 为空则返回true，不否则返回false
      */
-    public static boolean isEmpty(String s)
-    {
+    public static boolean isEmpty(String s) {
         return s == null || "".equals(s) || "null".equals(s) || "\u0000".equals(s);
     }
 
@@ -72,16 +65,12 @@ public class GloubFunc
      * @desc 反射对象方法
      */
     public static Object refMethod(Object obj, String methodName, Object parm, Class<?> arg)
-        throws Exception
-    {
-        try
-        {
+            throws Exception {
+        try {
             Method m = obj.getClass().getMethod(methodName, arg);
-            Object reVal = (Object)m.invoke(obj, (String)parm);
+            Object reVal = (Object) m.invoke(obj, (String) parm);
             return reVal;
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             throw e;
         }
     }
@@ -93,14 +82,10 @@ public class GloubFunc
      * @param equalValue
      * @return
      */
-    public static boolean equalsValue(String value, String equalValue)
-    {
-        if (value != null && value.equals(equalValue))
-        {
+    public static boolean equalsValue(String value, String equalValue) {
+        if (value != null && value.equals(equalValue)) {
             return true;
-        }
-        else
-        {
+        } else {
             return false;
         }
     }
@@ -111,14 +96,10 @@ public class GloubFunc
      * @param value
      * @return
      */
-    public static boolean equalsNull(Object value)
-    {
-        if (value != null && !value.equals("") && !value.equals("null"))
-        {
+    public static boolean equalsNull(Object value) {
+        if (value != null && !value.equals("") && !value.equals("null")) {
             return false;
-        }
-        else
-        {
+        } else {
             return true;
         }
     }
@@ -129,16 +110,12 @@ public class GloubFunc
      * @param numStr
      * @return
      */
-    public static boolean equalsNum(String numStr)
-    {
+    public static boolean equalsNum(String numStr) {
         boolean flag = false;
-        try
-        {
+        try {
             Long.parseLong(numStr);
             flag = true;
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             flag = false;
         }
         return flag;
@@ -150,15 +127,11 @@ public class GloubFunc
      * @param str
      * @return boolean，检查不通过返回true
      */
-    public static boolean checkString(String str)
-    {
+    public static boolean checkString(String str) {
         boolean flag = true;
-        if (null == str || "".equals(str) || "null".equals(str))
-        {
+        if (null == str || "".equals(str) || "null".equals(str)) {
             return flag;
-        }
-        else
-        {
+        } else {
             flag = false;
         }
         return flag;
@@ -170,14 +143,10 @@ public class GloubFunc
      * @param str
      * @return 如果为null返回空，
      */
-    public static String isNull(String str)
-    {
-        if (null == str)
-        {
+    public static String isNull(String str) {
+        if (null == str) {
             return "";
-        }
-        else
-        {
+        } else {
             return str.trim();
         }
     }
@@ -188,10 +157,8 @@ public class GloubFunc
      * @param str
      * @return 正确返回true，错误返回false
      */
-    public static boolean isNumber(String str)
-    {
-        if (str == null || str.equals(""))
-        {
+    public static boolean isNumber(String str) {
+        if (str == null || str.equals("")) {
             return false;
         }
 
@@ -206,13 +173,11 @@ public class GloubFunc
      *
      * @return string
      */
-    public static String random(int n)
-    {
+    public static String random(int n) {
         String sRand = "";
 
         Random random = new Random();
-        for (int i = 0; i < n; i++)
-        {
+        for (int i = 0; i < n; i++) {
             String rand = String.valueOf(random.nextInt(10));
             sRand += rand;
         }
@@ -225,10 +190,8 @@ public class GloubFunc
      *
      * @return string
      */
-    public static boolean isNumeric(String str)
-    {
-        for (int i = str.length(); --i >= 0; )
-        {
+    public static boolean isNumeric(String str) {
+        for (int i = str.length(); --i >= 0; ) {
             int chr = str.charAt(i);
             if (chr < 48 || chr > 57) {
                 return false;
@@ -245,14 +208,10 @@ public class GloubFunc
      * @param nDef 对象为null时的返回str
      * @return 结果字符串
      */
-    public static long initLong(String s, long nDef)
-    {
-        if (s != null && !"".equals(s))
-        {
+    public static long initLong(String s, long nDef) {
+        if (s != null && !"".equals(s)) {
             return Long.parseLong(s);
-        }
-        else
-        {
+        } else {
             return nDef;
         }
     }
@@ -264,14 +223,10 @@ public class GloubFunc
      * @param nDef 对象为null时的返回 nDef
      * @return 结果字符串
      */
-    public static int initInt(String s, int nDef)
-    {
-        if (s != null && !"".equals(s))
-        {
+    public static int initInt(String s, int nDef) {
+        if (s != null && !"".equals(s)) {
             return Integer.parseInt(s);
-        }
-        else
-        {
+        } else {
             return nDef;
         }
     }
@@ -283,14 +238,10 @@ public class GloubFunc
      * @Title: initDouble
      * @Description:
      */
-    public static double initDouble(String s, int nDef)
-    {
-        if (s != null && !"".equals(s))
-        {
+    public static double initDouble(String s, int nDef) {
+        if (s != null && !"".equals(s)) {
             return Double.parseDouble(s);
-        }
-        else
-        {
+        } else {
             return nDef;
         }
     }
@@ -302,14 +253,10 @@ public class GloubFunc
      * @param sDef 对象为null时的返回 sDef
      * @return 结果字符串
      */
-    public static String initStr(Object o, String sDef)
-    {
-        if (o != null)
-        {
+    public static String initStr(Object o, String sDef) {
+        if (o != null) {
             return o.toString();
-        }
-        else
-        {
+        } else {
             return sDef;
         }
     }
@@ -320,8 +267,7 @@ public class GloubFunc
      * @param o 格式化对象
      * @return 结果字符串 对象为null时的返回“”；
      */
-    public static String initStr(Object o)
-    {
+    public static String initStr(Object o) {
         return initStr(o, "");
     }
 
@@ -331,19 +277,14 @@ public class GloubFunc
      * @Title: strToDate
      * @Description:字符串转化为时间
      */
-    public static Date strToDate(String time)
-    {
+    public static Date strToDate(String time) {
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date();
-        try
-        {
-            if (!"".equals(time) && time != null)
-            {
+        try {
+            if (!"".equals(time) && time != null) {
                 date = df.parse(time);
             }
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -356,75 +297,55 @@ public class GloubFunc
      * @Title: strToDateByAlipay
      * @Description: 时间转日期
      */
-    public static Date strToDateByAlipay(String time)
-    {
+    public static Date strToDateByAlipay(String time) {
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = new Date();
-        try
-        {
-            if (!"".equals(time) && time != null)
-            {
+        try {
+            if (!"".equals(time) && time != null) {
                 date = df.parse(time);
             }
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
         return date;
     }
 
-    public static String date2StringByWx(Date time)
-    {
+    public static String date2StringByWx(Date time) {
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-ddHH:mm:ss");
         String date = "";
-        try
-        {
-            if (time != null)
-            {
+        try {
+            if (time != null) {
                 date = df.format(time);
             }
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return date;
     }
 
-    public static Date strToDateByWx(String time)
-    {
+    public static Date strToDateByWx(String time) {
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-ddHH:mm:ss");
         Date date = new Date();
-        try
-        {
-            if (!"".equals(time) && time != null)
-            {
+        try {
+            if (!"".equals(time) && time != null) {
                 date = df.parse(time);
             }
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
         return date;
     }
 
-    public static Date strToDateByWxDone(String time)
-    {
+    public static Date strToDateByWxDone(String time) {
         SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
         Date date = new Date();
-        try
-        {
-            if (!"".equals(time) && time != null)
-            {
+        try {
+            if (!"".equals(time) && time != null) {
                 date = df.parse(time);
             }
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -437,19 +358,14 @@ public class GloubFunc
      * @Title: date2StringBydayTime
      * @Description: 时间转化字符串
      */
-    public static String date2StringBydayTime(Date time)
-    {
+    public static String date2StringBydayTime(Date time) {
         SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
         String date = "";
-        try
-        {
-            if (time != null)
-            {
+        try {
+            if (time != null) {
                 date = df.format(time);
             }
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return date;
@@ -461,19 +377,14 @@ public class GloubFunc
      * @Title: dateToStr
      * @Description: 时间转化字符串
      */
-    public static String dateToStr(Date time)
-    {
+    public static String dateToStr(Date time) {
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         String date = "";
-        try
-        {
-            if (time != null)
-            {
+        try {
+            if (time != null) {
                 date = df.format(time);
             }
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return date;
@@ -486,8 +397,7 @@ public class GloubFunc
      * @param mode 时间模式,如yyyy.MM.dd HH:mm:ss
      * @return
      */
-    public static String formatDate(Date date, String mode)
-    {
+    public static String formatDate(Date date, String mode) {
         return new SimpleDateFormat(mode).format(date);
     }
 
@@ -501,8 +411,7 @@ public class GloubFunc
      * @throws Exception
      */
     public static Date parseDate(String date, String mode)
-        throws ParseException
-    {
+            throws ParseException {
         return new SimpleDateFormat(mode).parse(date);
     }
 
@@ -513,8 +422,7 @@ public class GloubFunc
      * @Title: now
      * @Description:
      */
-    public static Date now()
-    {
+    public static Date now() {
         return Calendar.getInstance().getTime();
     }
 
@@ -524,8 +432,7 @@ public class GloubFunc
      * @param format 格式,如"2008-11-15"
      * @return
      */
-    public static String now(String format)
-    {
+    public static String now(String format) {
         return formatDate(now(), format);
     }
 
@@ -533,26 +440,18 @@ public class GloubFunc
      * @param longObj
      * @return
      */
-    public static Long ObjectTOLong(Object longObj)
-    {
-        if (longObj != null && !"null".equals(longObj))
-        {
+    public static Long ObjectTOLong(Object longObj) {
+        if (longObj != null && !"null".equals(longObj)) {
             return Long.parseLong(String.valueOf(longObj));
-        }
-        else
-        {
+        } else {
             return null;
         }
     }
 
-    public static long ObjectTolong(Object longObj)
-    {
-        if (longObj != null && !"null".equals(longObj))
-        {
+    public static long ObjectTolong(Object longObj) {
+        if (longObj != null && !"null".equals(longObj)) {
             return Long.parseLong(String.valueOf(longObj));
-        }
-        else
-        {
+        } else {
             return 0L;
         }
     }
@@ -563,36 +462,28 @@ public class GloubFunc
      * @param time yyyyMMdd HHmmss FFF
      * @return
      */
-    public static String date2StrByInt(Date time, String par)
-    {
+    public static String date2StrByInt(Date time, String par) {
         SimpleDateFormat df = new SimpleDateFormat(par);
         String date = "";
-        try
-        {
-            if (time != null)
-            {
+        try {
+            if (time != null) {
                 date = df.format(time);
             }
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return date;
     }
 
-    public static String[] listToArr(List<String> list)
-    {
+    public static String[] listToArr(List<String> list) {
 
         String[] arr = null;
 
-        if (list != null && list.size() > 0)
-        {
+        if (list != null && list.size() > 0) {
 
             arr = new String[list.size()];
 
-            for (int i = 0; i < list.size(); i++)
-            {
+            for (int i = 0; i < list.size(); i++) {
                 arr[i] = list.get(i);
             }
 
@@ -603,31 +494,30 @@ public class GloubFunc
 
     /**
      * 封装请求头
+     *
      * @param request
      * @return
      */
-    public static  HttpEntity<?> wrapHttpEntity(Object request)
-    {
+    public static HttpEntity<?> wrapHttpEntity(Object request) {
 //        logger.warn("wrapHttpEntity=>" + JSON.toJSONString(request));
 
         //请求头封装
         HttpEntity<?> httpEntity = null;
         MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
-        if (null != request)
-        {
-            if(MultiValueMap.class.isAssignableFrom(request.getClass())) {
+        if (null != request) {
+            if (MultiValueMap.class.isAssignableFrom(request.getClass())) {
                 headers.add("Content-Type", "application/x-www-form-urlencoded");
-            } else if(request instanceof String && ((String) request).indexOf("xml version") != -1) {
+            } else if (request instanceof String && ((String) request).indexOf("xml version") != -1) {
                 headers.add("Content-Type", "application/x-www-form-urlencoded");
             }
 
-            if(request instanceof Map) {
+            if (request instanceof Map) {
                 // 带过来一个临时变量，jingZhunToken，塞到header中之后就删除掉
                 Map mRequest = (Map) request;
                 headers.add("Accept", "application/json");
                 headers.add("Accept-Encoding", "");
                 String jingZhunToken = String.valueOf(mRequest.get("jingZhunToken"));
-                if(GloubFunc.notEmpty(jingZhunToken)) {
+                if (GloubFunc.notEmpty(jingZhunToken)) {
                     headers.add("token", jingZhunToken);
                     headers.add("Content-Type", "application/json;charset=UTF-8");
 
@@ -635,8 +525,8 @@ public class GloubFunc
                     mRequest.remove("jingZhunToken");
                 }
 
-                MultiValueMap raiToken = (MultiValueMap)mRequest.get("uipToken");
-                if(null != raiToken) {
+                MultiValueMap raiToken = (MultiValueMap) mRequest.get("uipToken");
+                if (null != raiToken) {
                     headers.putAll(raiToken);
                     mRequest.remove("uipToken");
                 }
@@ -657,11 +547,11 @@ public class GloubFunc
 
     /**
      * 封装请求头for fullservice xml
+     *
      * @param request
      * @return
      */
-    public static  HttpEntity<?> wrapHttpEntityForFullServiceXml(Object request)
-    {
+    public static HttpEntity<?> wrapHttpEntityForFullServiceXml(Object request) {
         //请求头封装
         HttpEntity<?> httpEntity = null;
         MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
@@ -681,16 +571,17 @@ public class GloubFunc
 
     /**
      * 將一個正整數隨機分成N份
+     *
      * @param parts 份數
      * @param total 正整數
      */
-    public static List<Integer> random(int parts,int total) {
+    public static List<Integer> random(int parts, int total) {
         int[] v = new int[parts];
         double[] r = randomParts(parts);
         double totalRate = Arrays.stream(r).sum();
         for (int i = 0; i < parts; i++) {
             v[i] = Double.valueOf(Math.floor((r[i] / totalRate) * total)).intValue();
-            if(v[i] == 0) {
+            if (v[i] == 0) {
                 v[i] = 1;
             }
         }
@@ -698,15 +589,15 @@ public class GloubFunc
 
         List<Integer> li = new ArrayList<>();
 
-        for(int inn : v){
+        for (int inn : v) {
             li.add(inn);
         }
 
         return li;
     }
 
-    public static  String getString(JSONObject originalJson, String nodePath) {
-        if(nodePath.indexOf(".") < 0 && !StringUtils.isEmpty(nodePath)) {
+    public static String getString(JSONObject originalJson, String nodePath) {
+        if (nodePath.indexOf(".") < 0 && !StringUtils.isEmpty(nodePath)) {
             return originalJson.getString(nodePath);
         } else {
             String targetJsonNodePath = nodePath.substring(0, nodePath.lastIndexOf("."));
@@ -717,7 +608,7 @@ public class GloubFunc
     }
 
     public static JSONObject getJSONObject(JSONObject originalJson, String nodePath) {
-        if(nodePath.indexOf(".") < 0 && !StringUtils.isEmpty(nodePath)) {
+        if (nodePath.indexOf(".") < 0 && !StringUtils.isEmpty(nodePath)) {
             return originalJson.getJSONObject(nodePath);
         } else {
             String dealNode = nodePath.substring(0, nodePath.indexOf("."));
@@ -727,18 +618,18 @@ public class GloubFunc
         }
     }
 
-    public static List<String> setElementList(Map<String,Object> map){
+    public static List<String> setElementList(Map<String, Object> map) {
         List<String> list = new ArrayList<>();
 
         JSONObject json = JSON.parseObject(JSON.toJSONString(map));
 
-        if(json!=null && json.containsKey("elementInfo")){
+        if (json != null && json.containsKey("elementInfo")) {
 
             JSONArray array = json.getJSONArray("elementInfo");
 
-            if(array!=null && array.size()>0){
+            if (array != null && array.size() > 0) {
 
-                for(int i = 0; i < array.size(); i ++) {
+                for (int i = 0; i < array.size(); i++) {
                     JSONObject item = array.getJSONObject(i);
 
                     String productId = item.getString("id");
@@ -751,16 +642,14 @@ public class GloubFunc
         return list;
     }
 
-    public static String getElement(List<String> liEle,String[] eleArr){
+    public static String getElement(List<String> liEle, String[] eleArr) {
 
-        String s ="";
+        String s = "";
 
-        if(eleArr != null && eleArr.length>0)
-        {
-            for(String ele : eleArr)
-            {
+        if (eleArr != null && eleArr.length > 0) {
+            for (String ele : eleArr) {
 
-                if(!liEle.contains(ele)){
+                if (!liEle.contains(ele)) {
 
                     s = ele;
                     break;
@@ -771,26 +660,25 @@ public class GloubFunc
         return s;
     }
 
-    public static List removeDuplicate(List list)
-    {
+    public static List removeDuplicate(List list) {
         HashSet h = new HashSet(list);
         list.clear();
         list.addAll(h);
         return list;
     }
 
-    public static Map<String,Object> getIdCard(String IDcard) {
+    public static Map<String, Object> getIdCard(String IDcard) {
 
 
-        Map<String,Object> map = new HashMap<>();
+        Map<String, Object> map = new HashMap<>();
 
-        String month = IDcard.substring(10,12);
+        String month = IDcard.substring(10, 12);
 
-        String day = IDcard.substring(12,14);
+        String day = IDcard.substring(12, 14);
 
-        map.put("month",month);
+        map.put("month", month);
 
-        map.put("day",day);
+        map.put("day", day);
 
         return map;
 
@@ -798,9 +686,9 @@ public class GloubFunc
 
     public static boolean isMobilePhone(String phoneNumber) {
         // 校验手机号码,非手机号码，直接退出
-        String reg=   "^1[0-9]{10}$";
-        Pattern pattern =  Pattern.compile(reg);
-        Matcher matcher =  pattern.matcher(phoneNumber);
+        String reg = "^1[0-9]{10}$";
+        Pattern pattern = Pattern.compile(reg);
+        Matcher matcher = pattern.matcher(phoneNumber);
         boolean bFind = matcher.find();
 
         return bFind;
@@ -809,8 +697,8 @@ public class GloubFunc
     /**
      * 生成n位的随机字母与数字组合
      */
-    public static String getRandomString(int n){
-        String[] chars = new String[] { "a", "b", "c", "d", "e", "f",
+    public static String getRandomString(int n) {
+        String[] chars = new String[]{"a", "b", "c", "d", "e", "f",
                 "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s",
                 "t", "u", "v", "w", "x", "y", "z", "0", "1", "2", "3", "4", "5",
                 "6", "7", "8", "9"};
@@ -821,12 +709,12 @@ public class GloubFunc
             String str = uuid.substring(i * 4, i * 4 + 4);
             int x = Integer.parseInt(str, 16);
             int index = x % 0x24;
-            if(index < 26){
-                charFlag ++;
+            if (index < 26) {
+                charFlag++;
             }
             shortBuffer.append(chars[index]);
         }
-        if(charFlag == n || charFlag == 0){
+        if (charFlag == n || charFlag == 0) {
             return getRandomString(n);
         }
         return shortBuffer.toString();

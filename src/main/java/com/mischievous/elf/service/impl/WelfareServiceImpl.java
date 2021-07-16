@@ -13,7 +13,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
-import java.net.URL;
 import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
@@ -69,7 +68,7 @@ public class WelfareServiceImpl implements WelfareService {
 
             StringBuffer fileContent = new StringBuffer();
             List<String> contentList = new ArrayList<>();
-            for (int j = lotteryList.size()-1; j>=0; j--) {
+            for (int j = lotteryList.size() - 1; j >= 0; j--) {
                 LotteryRecordDto l = lotteryList.get(j);
                 fileContent.append(l.toString()).append("\n");
                 contentList.add(l.toString());
@@ -117,7 +116,7 @@ public class WelfareServiceImpl implements WelfareService {
         List<LotteryRecordDto> lotteryList = new ArrayList<LotteryRecordDto>();
         xmlContent = xmlContent.split("<tbody id=\"tdata\">")[1]
                 .split("</tbody>")[0]
-                .replace("&nbsp;","");
+                .replace("&nbsp;", "");
         String[] trList = xmlContent.split("</tr>");
         int trListLength = trList.length;
         if (trListLength == 0) {
@@ -199,21 +198,21 @@ public class WelfareServiceImpl implements WelfareService {
         localPath = URLDecoder.decode(localPath, "utf-8");
 
         int index = localPath.indexOf("WEB-INF");
-        if(index == -1){
+        if (index == -1) {
             index = localPath.indexOf("classes");
         }
-        if(index == -1){
+        if (index == -1) {
             index = localPath.indexOf("bin");
         }
         localPath = localPath.substring(0, index);
 
-        if(localPath.startsWith("zip")){
+        if (localPath.startsWith(FileConstant.PREFIX_ZIP)) {
             //当class文件在war中时，此时返回zip:D:/...这样的路径
             localPath = localPath.substring(4);
-        }else if(localPath.startsWith("file")){
+        } else if (localPath.startsWith(FileConstant.PREFIX_FILE)) {
             //当class文件在class文件中时，此时返回file:/D:/...这样的路径
             localPath = localPath.substring(6);
-        }else if(localPath.startsWith("jar")){
+        } else if (localPath.startsWith(FileConstant.PREFIX_JAR)) {
             //当class文件在jar文件里面时，此时返回jar:file:/D:/...这样的路径
             localPath = localPath.substring(10);
         }

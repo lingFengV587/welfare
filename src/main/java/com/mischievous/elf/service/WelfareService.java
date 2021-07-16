@@ -22,8 +22,8 @@ public interface WelfareService {
      * 批量导入历史记录
      * 由于网站一次性返回数据大小限制，toNum-fromNum<30
      *
-     * @param fromNum   起始期号
-     * @param toNum     结束期号
+     * @param fromNum 起始期号
+     * @param toNum   结束期号
      * @return
      */
 

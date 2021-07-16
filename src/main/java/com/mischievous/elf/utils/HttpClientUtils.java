@@ -146,7 +146,7 @@ public class HttpClientUtils {
         return result;
     }
 
-    public static String formatXmlContent(String xmlContent)throws Exception {
+    public static String formatXmlContent(String xmlContent) throws Exception {
         StringBuffer sb = new StringBuffer();
         xmlContent = xmlContent.trim();
         xmlContent.replace("\r", "")

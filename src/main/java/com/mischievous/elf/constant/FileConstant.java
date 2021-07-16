@@ -14,4 +14,8 @@ public class FileConstant {
     public final static String SUFFIX_XLS = "xls";
     //EXCEL后缀名类型xlsx
     public final static String SUFFIX_XLSX = "xlsx";
+
+    public final static String PREFIX_ZIP = "zip";
+    public final static String PREFIX_FILE = "file";
+    public final static String PREFIX_JAR = "jar";
 }

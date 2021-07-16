@@ -6,10 +6,10 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * @ClassName: FieldName
- * @Description: 字段中文名
  * @author lifang
  * @version 1.0
+ * @ClassName: FieldName
+ * @Description: 字段中文名
  * @CreateDate 2020/1/14
  */
 @Target(ElementType.FIELD)

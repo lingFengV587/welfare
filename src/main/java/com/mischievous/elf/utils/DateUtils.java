@@ -13,8 +13,7 @@ import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 
-public class DateUtils
-{
+public class DateUtils {
 
     private static final Logger log = LoggerFactory.getLogger(DateUtils.class);
 
@@ -66,17 +65,13 @@ public class DateUtils
      * @param endDate   结束时间
      * @return 相差天数
      */
-    public static int betweenDays(Date beginDate, Date endDate)
-    {
+    public static int betweenDays(Date beginDate, Date endDate) {
         SimpleDateFormat sdf = new SimpleDateFormat(YYYY_MM_DD);
 
-        try
-        {
+        try {
             beginDate = sdf.parse(sdf.format(beginDate));
             endDate = sdf.parse(sdf.format(endDate));
-        }
-        catch (ParseException e)
-        {
+        } catch (ParseException e) {
             log.error("", e);
             return 0;
         }
@@ -98,8 +93,7 @@ public class DateUtils
      * @param days
      * @return
      */
-    public static Date addDayas(Date date, int days)
-    {
+    public static Date addDayas(Date date, int days) {
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
         cal.add(Calendar.DATE, days);
@@ -115,8 +109,7 @@ public class DateUtils
      * @param days
      * @return
      */
-    public static Date addDayasEnd(Date date, int days)
-    {
+    public static Date addDayasEnd(Date date, int days) {
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
         cal.add(Calendar.DATE, days);
@@ -135,8 +128,7 @@ public class DateUtils
      * @param months
      * @return
      */
-    public static Date addMonth(Date date, int months)
-    {
+    public static Date addMonth(Date date, int months) {
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
         cal.add(Calendar.MONTH, months);
@@ -173,8 +165,7 @@ public class DateUtils
      * @return
      * @author liangyi
      */
-    public static Timestamp getNMinutes(int n)
-    {
+    public static Timestamp getNMinutes(int n) {
         Calendar calender = Calendar.getInstance();
         calender.add(Calendar.MINUTE, n);
         Timestamp nMinutesLater = new Timestamp(calender.getTimeInMillis());
@@ -184,11 +175,11 @@ public class DateUtils
 
     /**
      * 获取n秒后的时间
+     *
      * @param n
      * @return
      */
-    public static Timestamp getNSecond(int n)
-    {
+    public static Timestamp getNSecond(int n) {
         Calendar calender = Calendar.getInstance();
         calender.add(Calendar.SECOND, n);
         Timestamp nMinutesLater = new Timestamp(calender.getTimeInMillis());
@@ -206,8 +197,7 @@ public class DateUtils
      * @author mayt
      */
     public static Timestamp getTimestamp(String time, String pattern)
-            throws Exception
-    {
+            throws Exception {
         DateFormat format = new SimpleDateFormat(pattern);
         format.setLenient(false);
         Timestamp ts = new Timestamp(format.parse(time).getTime());
@@ -225,8 +215,7 @@ public class DateUtils
      * @author liangyi
      */
     public static Date getDate(String dateStr, String pattern)
-            throws Exception
-    {
+            throws Exception {
         DateFormat format = new SimpleDateFormat(pattern);
         format.setLenient(false);
         Date date = new Date(format.parse(dateStr).getTime());
@@ -239,8 +228,7 @@ public class DateUtils
      * @return
      * @author liangyi
      */
-    public static Timestamp getSysDate()
-    {
+    public static Timestamp getSysDate() {
         Timestamp time = new Timestamp(System.currentTimeMillis());
         return time;
     }
@@ -252,8 +240,7 @@ public class DateUtils
      * @return
      * @author liangyi
      */
-    public static String getDateString(String pattern)
-    {
+    public static String getDateString(String pattern) {
         Timestamp time = getSysDate();
         DateFormat dfmt = new SimpleDateFormat(pattern);
         Date date = time;
@@ -267,8 +254,7 @@ public class DateUtils
      * @param pattern
      * @return
      */
-    public static String getDateString(Timestamp time, String pattern)
-    {
+    public static String getDateString(Timestamp time, String pattern) {
         DateFormat dfmt = new SimpleDateFormat(pattern);
         Date date = time;
         return dfmt.format(date);
@@ -281,8 +267,7 @@ public class DateUtils
      * @param pattern
      * @return
      */
-    public static String getDateString(Date date, String pattern)
-    {
+    public static String getDateString(Date date, String pattern) {
         DateFormat dfmt = new SimpleDateFormat(pattern);
         return dfmt.format(date);
     }
@@ -294,8 +279,7 @@ public class DateUtils
      * @return
      * @author liangyi
      */
-    public static Timestamp getNDays(Date date, int n)
-    {
+    public static Timestamp getNDays(Date date, int n) {
         Calendar calender = Calendar.getInstance();
         calender.setTime(date);
         calender.add(Calendar.DATE, n);
@@ -311,8 +295,7 @@ public class DateUtils
      * @return
      * @author liangyi
      */
-    public static Timestamp getNDays(int n)
-    {
+    public static Timestamp getNDays(int n) {
         Calendar calender = Calendar.getInstance();
         calender.add(Calendar.DATE, n);
         Timestamp nMinutesLater = new Timestamp(calender.getTimeInMillis());
@@ -323,11 +306,11 @@ public class DateUtils
 
     /**
      * 获取n 月后的日期
+     *
      * @param n
      * @return
      */
-    public static Timestamp getNMonths(int n)
-    {
+    public static Timestamp getNMonths(int n) {
         Calendar calender = Calendar.getInstance();
         calender.add(Calendar.MONTH, n);
         Timestamp nMinutesLater = new Timestamp(calender.getTimeInMillis());
@@ -335,11 +318,11 @@ public class DateUtils
         return nMinutesLater;
     }
 
-    public String getDate(int month){
-        SimpleDateFormat df=new SimpleDateFormat("yyyy-MM-dd");
-        Calendar cal=Calendar.getInstance();
-        cal.add(Calendar.MONTH,month);//对月份进行计算,减去12个月
-        Date date=cal.getTime();
+    public String getDate(int month) {
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.MONTH, month);//对月份进行计算,减去12个月
+        Date date = cal.getTime();
         return df.format(date);
 
     }
@@ -354,8 +337,7 @@ public class DateUtils
      * @author liangyi
      */
     public static List<String> getDates(Timestamp startDate, Timestamp endDate, String pattern)
-            throws ParseException
-    {
+            throws ParseException {
         List<String> dates = new LinkedList<String>();
 
         Calendar start = Calendar.getInstance();
@@ -364,13 +346,11 @@ public class DateUtils
         Calendar end = Calendar.getInstance();
         end.setTime(endDate);
 
-        if (pattern == null)
-        {
+        if (pattern == null) {
             pattern = YYYYMMDD;
         }
         DateFormat dfmt = new SimpleDateFormat(pattern);
-        while (!start.after(end))
-        {
+        while (!start.after(end)) {
             dates.add(dfmt.format(start.getTime()));
             start.add(Calendar.DAY_OF_YEAR, 1);
         }
@@ -387,8 +367,7 @@ public class DateUtils
      * @return
      * @author liangyi
      */
-    public static String convertSecond2HHmmss(int seconds, String separate)
-    {
+    public static String convertSecond2HHmmss(int seconds, String separate) {
 
         int rest = seconds;
 
@@ -419,38 +398,29 @@ public class DateUtils
      * @return
      * @author liangyi
      */
-    public static List<Date> getNMonthFrom(Date srcDate, int n)
-    {
-        if (srcDate == null)
-        {
+    public static List<Date> getNMonthFrom(Date srcDate, int n) {
+        if (srcDate == null) {
             return null;
         }
         List<Date> list = new ArrayList<>(Math.abs(n) + 1);
 
-        if (n == 0)
-        {
+        if (n == 0) {
             list.add(srcDate);
-        }
-        else if (n > 0)
-        {
+        } else if (n > 0) {
             //后N个月
             list.add(srcDate);
 
             Calendar calender = Calendar.getInstance();
-            for (int i = 1; i <= n; i++)
-            {
+            for (int i = 1; i <= n; i++) {
                 calender.setTime(srcDate);
                 calender.add(Calendar.MONTH, i);
                 Date _1MonthLater = new Date(calender.getTimeInMillis());
                 list.add(_1MonthLater);
             }
-        }
-        else
-        {
+        } else {
             //前N个月
             Calendar calender = Calendar.getInstance();
-            for (int i = n; i < 0; i++)
-            {
+            for (int i = n; i < 0; i++) {
                 calender.setTime(srcDate);
                 calender.add(Calendar.MONTH, i);
                 Date _1MonthEarlier = new Date(calender.getTimeInMillis());
@@ -469,8 +439,7 @@ public class DateUtils
      * @param format 14位:yyyyMMddHHmmss,19位：yyyy-MM-dd HH:mm:ss
      * @return
      */
-    public static String getSysdate(String format)
-    {
+    public static String getSysdate(String format) {
         Date now = new Date();
         //SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
         SimpleDateFormat dateFormat = new SimpleDateFormat(format);
@@ -483,15 +452,11 @@ public class DateUtils
      * @param parsePatterns 时间格式化
      * @return {@link SimpleDateFormat}
      */
-    public static SimpleDateFormat getSimpleDateFormat(final String parsePatterns)
-    {
+    public static SimpleDateFormat getSimpleDateFormat(final String parsePatterns) {
         SimpleDateFormat dateFormat = null;
-        if (map.containsKey(parsePatterns))
-        {
+        if (map.containsKey(parsePatterns)) {
             dateFormat = map.get(parsePatterns);
-        }
-        else
-        {
+        } else {
             dateFormat = new SimpleDateFormat(parsePatterns);
             map.put(parsePatterns, dateFormat);
         }
@@ -513,10 +478,8 @@ public class DateUtils
      * @param parsePatterns 格式化字符串
      * @return String
      */
-    public static String format(final Date date, final String parsePatterns)
-    {
-        if (StringUtils.isEmpty(parsePatterns) || date == null)
-        {
+    public static String format(final Date date, final String parsePatterns) {
+        if (StringUtils.isEmpty(parsePatterns) || date == null) {
             return null;
         }
         return getSimpleDateFormat(parsePatterns).format(date);
@@ -528,8 +491,7 @@ public class DateUtils
      * @param date 日期
      * @return String 格式化好的日期字符串 "yyyy-MM-dd HH:mm:ss"
      */
-    public static String format(final Date date)
-    {
+    public static String format(final Date date) {
         return format(date, YYYY_MM_DD_HH_MM_SS);
     }
 
@@ -541,26 +503,20 @@ public class DateUtils
      * @param cycle
      * @return
      */
-    public static int getDaysByRule(Date date, int py, int cycle)
-    {
+    public static int getDaysByRule(Date date, int py, int cycle) {
 
         Date newDate = new Date();
         //周
-        if (cycle == 2)
-        {
+        if (cycle == 2) {
 
-            newDate = addDayas(date, 7*py);
+            newDate = addDayas(date, 7 * py);
         }
 
         //月
-        else if (cycle == 3)
-        {
+        else if (cycle == 3) {
 
             newDate = addMonth(date, py);
-        }
-
-        else
-        {
+        } else {
             return py;
         }
 
@@ -568,10 +524,9 @@ public class DateUtils
     }
 
 
-
-
     /**
      * 判断某个时间time1是否在另一个时间time2之前
+     *
      * @param time1 第一个时间
      * @param time2 第二个时间
      * @return 时间time1是否在另一个时间time2之前
@@ -588,54 +543,55 @@ public class DateUtils
 
     /**
      * 返回下个月最后一秒的时间
+     *
      * @return
      * @throws Exception
      */
-    public  static Date getNextMonthLastTime(int end) throws Exception{
+    public static Date getNextMonthLastTime(int end) throws Exception {
 
-        Date date=new Date();
+        Date date = new Date();
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
-        calendar.add(Calendar.MONTH, end+1);
+        calendar.add(Calendar.MONTH, end + 1);
         calendar.set(Calendar.DATE, 0);
 
         Date date1 = calendar.getTime();
 
-        String yyyymmdd = format(date1,YYYY_MM_DD);
+        String yyyymmdd = format(date1, YYYY_MM_DD);
         yyyymmdd += " 23:59:59";
 
         date1 = getDate(yyyymmdd, YYYY_MM_DD_HH_MM_SS);
 
-        return  date1;
+        return date1;
 
     }
 
     /**
      * 返回上n个月最后一秒的时间
+     *
      * @return
      * @throws Exception
      */
-    public  static Date getLastMonthLastTime(int end) throws Exception{
+    public static Date getLastMonthLastTime(int end) throws Exception {
 
-        Date date=new Date();
+        Date date = new Date();
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
-        calendar.add(Calendar.MONTH, 2-end);
+        calendar.add(Calendar.MONTH, 2 - end);
         calendar.set(Calendar.DATE, -1);
 
         Date date1 = calendar.getTime();
 
-        String yyyymmdd = format(date1,YYYY_MM_DD);
+        String yyyymmdd = format(date1, YYYY_MM_DD);
         yyyymmdd += " 23:59:59";
 
         date1 = getDate(yyyymmdd, YYYY_MM_DD_HH_MM_SS);
 
-        return  date1;
+        return date1;
 
     }
 
     /**
-     *
      * 1 第一季度 2 第二季度 3 第三季度 4 第四季度
      *
      * @param date
@@ -676,32 +632,30 @@ public class DateUtils
     }
 
 
-
     public static String[] getSeasonDate(Date date) {
         String[] season = new String[2];
         int nSeason = getSeason(date);
         if (nSeason == 1) {
             // 第一季度
-            season[0] = GloubFunc.now("yyyy")+"01";
-            season[1] = GloubFunc.now("yyyy")+"03";
+            season[0] = GloubFunc.now("yyyy") + "01";
+            season[1] = GloubFunc.now("yyyy") + "03";
         } else if (nSeason == 2) {
             // 第二季度
-            season[0] = GloubFunc.now("yyyy")+"04";
-            season[1] = GloubFunc.now("yyyy")+"06";
+            season[0] = GloubFunc.now("yyyy") + "04";
+            season[1] = GloubFunc.now("yyyy") + "06";
         } else if (nSeason == 3) {
             // 第三季度
-            season[0] = GloubFunc.now("yyyy")+"07";
-            season[1] = GloubFunc.now("yyyy")+"09";
+            season[0] = GloubFunc.now("yyyy") + "07";
+            season[1] = GloubFunc.now("yyyy") + "09";
         } else if (nSeason == 4) {
             // 第四季度
-            season[0] = GloubFunc.now("yyyy")+"10";
-            season[1] = GloubFunc.now("yyyy")+"12";
+            season[0] = GloubFunc.now("yyyy") + "10";
+            season[1] = GloubFunc.now("yyyy") + "12";
         }
         return season;
     }
 
-    public static int getDayOfMonth()
-    {
+    public static int getDayOfMonth() {
         Calendar now = Calendar.getInstance();
         int day = now.get(Calendar.DAY_OF_MONTH);
         return day;
@@ -709,25 +663,27 @@ public class DateUtils
 
     /**
      * 获取上一个月月份
+     *
      * @return
      */
-    public static String getBeforeMonth(){
+    public static String getBeforeMonth() {
         Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.MONTH,-1);
-        SimpleDateFormat format =  new SimpleDateFormat("yyyyMM");
+        calendar.add(Calendar.MONTH, -1);
+        SimpleDateFormat format = new SimpleDateFormat("yyyyMM");
         String time = format.format(calendar.getTime());
         return time;
     }
 
     /**
      * 获取指定日期的上一个月份
+     *
      * @return
      */
     public static String getBeforeMonthWithTragetDate(Date date) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
-        calendar.add(Calendar.MONTH,-1);
-        SimpleDateFormat format =  new SimpleDateFormat("yyyyMM");
+        calendar.add(Calendar.MONTH, -1);
+        SimpleDateFormat format = new SimpleDateFormat("yyyyMM");
         String time = format.format(calendar.getTime());
         return time;
     }
@@ -739,10 +695,9 @@ public class DateUtils
      * @throws Exception
      */
     public static Date getLastSecondOfCurrentMonth()
-            throws Exception
-    {
+            throws Exception {
         Calendar now = Calendar.getInstance();
-        now.set(Calendar.DAY_OF_MONTH,now.getActualMaximum(Calendar.DAY_OF_MONTH));
+        now.set(Calendar.DAY_OF_MONTH, now.getActualMaximum(Calendar.DAY_OF_MONTH));
         //设置每天的最大小时
         now.set(Calendar.HOUR_OF_DAY, now.getActualMaximum(Calendar.HOUR_OF_DAY));
         //设置每小时最大分钟
@@ -756,7 +711,7 @@ public class DateUtils
         int idxSexStart = 16;
         int birthYearSpan = 4;
         //如果是15位的证件号码
-        if(idCard.length() == 15) {
+        if (idCard.length() == 15) {
             idxSexStart = 14;
             birthYearSpan = 2;
         }
@@ -770,9 +725,9 @@ public class DateUtils
         //年龄
         Calendar certificateCal = Calendar.getInstance();
         Calendar currentTimeCal = Calendar.getInstance();
-        certificateCal.set(Integer.parseInt(year), Integer.parseInt(month)-1, Integer.parseInt(day));
+        certificateCal.set(Integer.parseInt(year), Integer.parseInt(month) - 1, Integer.parseInt(day));
         int yearAge = (currentTimeCal.get(currentTimeCal.YEAR)) - (certificateCal.get(certificateCal.YEAR));
-        certificateCal.set(currentTimeCal.get(Calendar.YEAR), Integer.parseInt(month)-1, Integer.parseInt(day));
+        certificateCal.set(currentTimeCal.get(Calendar.YEAR), Integer.parseInt(month) - 1, Integer.parseInt(day));
         int monthFloor = (currentTimeCal.before(certificateCal) ? 1 : 0);
 
         int age = yearAge - monthFloor;
@@ -780,7 +735,7 @@ public class DateUtils
     }
 
     public static String getSex(String idCard) {
-        if(GloubFunc.isEmpty(idCard)
+        if (GloubFunc.isEmpty(idCard)
                 || idCard.length() < 15) {
             // 默认给1
             return "1";
@@ -789,7 +744,7 @@ public class DateUtils
         int idxSexStart = 16;
         int birthYearSpan = 4;
         //如果是15位的证件号码
-        if(idCard.length() == 15) {
+        if (idCard.length() == 15) {
             idxSexStart = 14;
             birthYearSpan = 2;
         }
@@ -803,7 +758,7 @@ public class DateUtils
     }
 
     public static String getBirthDay(String idCard) {
-        if(GloubFunc.isEmpty(idCard)
+        if (GloubFunc.isEmpty(idCard)
                 || idCard.length() < 15) {
             // 默认给19900101
             return "19900101";
@@ -812,7 +767,7 @@ public class DateUtils
         int idxSexStart = 16;
         int birthYearSpan = 4;
         //如果是15位的证件号码
-        if(idCard.length() == 15) {
+        if (idCard.length() == 15) {
             idxSexStart = 14;
             birthYearSpan = 2;
         }
@@ -827,24 +782,25 @@ public class DateUtils
     }
 
 
-    public  static  int  dayForWeek() throws  Exception {
+    public static int dayForWeek() throws Exception {
         Calendar c = Calendar.getInstance();
         c.setTime(new Date());
-        int  dayForWeek = 0 ;
-        if (c.get(Calendar.DAY_OF_WEEK) == 1 ){
-            dayForWeek = 7 ;
-        }else {
-            dayForWeek = c.get(Calendar.DAY_OF_WEEK) - 1 ;
+        int dayForWeek = 0;
+        if (c.get(Calendar.DAY_OF_WEEK) == 1) {
+            dayForWeek = 7;
+        } else {
+            dayForWeek = c.get(Calendar.DAY_OF_WEEK) - 1;
         }
-        return  dayForWeek;
+        return dayForWeek;
     }
 
     /**
      * 获取时间（去除时分秒）
+     *
      * @param date
      * @return
      */
-    public static Date getDateOfBegin(Date date){
+    public static Date getDateOfBegin(Date date) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
         calendar.set(Calendar.HOUR_OF_DAY, 0);
@@ -858,10 +814,11 @@ public class DateUtils
 
     /**
      * 获取时间（加上23:59:59）
+     *
      * @param date
      * @return
      */
-    public static Date getDateOfEnd(Date date){
+    public static Date getDateOfEnd(Date date) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
         calendar.set(Calendar.HOUR_OF_DAY, 23);
@@ -872,8 +829,6 @@ public class DateUtils
         Date result = new Date(calendar.getTimeInMillis());
         return result;
     }
-
-
 
 
     public static int getMonth(Date start, Date end) {
@@ -893,7 +848,7 @@ public class DateUtils
         int year = endCalendar.get(Calendar.YEAR) - startCalendar.get(Calendar.YEAR);
         int month = endCalendar.get(Calendar.MONTH) - startCalendar.get(Calendar.MONTH);
 
-        if ((startCalendar.get(Calendar.DATE) == 1)&& (temp.get(Calendar.DATE) == 1)) {
+        if ((startCalendar.get(Calendar.DATE) == 1) && (temp.get(Calendar.DATE) == 1)) {
             return year * 12 + month + 1;
         } else if ((startCalendar.get(Calendar.DATE) != 1) && (temp.get(Calendar.DATE) == 1)) {
             return year * 12 + month;
@@ -905,10 +860,9 @@ public class DateUtils
     }
 
 
+    public static Date getNextMonthStartTime(int end) throws Exception {
 
-    public  static Date getNextMonthStartTime(int end) throws Exception{
-
-        Date date=new Date();
+        Date date = new Date();
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
         calendar.add(Calendar.MONTH, end);
@@ -916,19 +870,19 @@ public class DateUtils
 
         Date date1 = calendar.getTime();
 
-        String yyyymmdd = format(date1,YYYY_MM_DD);
+        String yyyymmdd = format(date1, YYYY_MM_DD);
         yyyymmdd += " 00:00:01";
 
         date1 = getDate(yyyymmdd, YYYY_MM_DD_HH_MM_SS);
 
-        return  date1;
+        return date1;
 
     }
 
 
-    public  static Date getNextMonthZDay(int end,int days) throws Exception{
+    public static Date getNextMonthZDay(int end, int days) throws Exception {
 
-        Date date=new Date();
+        Date date = new Date();
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
         calendar.add(Calendar.MONTH, end);
@@ -936,20 +890,20 @@ public class DateUtils
 
         Date date1 = calendar.getTime();
 
-        String yyyymmdd = format(date1,YYYY_MM_DD);
+        String yyyymmdd = format(date1, YYYY_MM_DD);
         yyyymmdd += " 00:00:01";
 
         date1 = getDate(yyyymmdd, YYYY_MM_DD_HH_MM_SS);
 
 
-        Date date2 = addDayas(date1,days-1);
+        Date date2 = addDayas(date1, days - 1);
 
-        return  date2;
+        return date2;
 
     }
 
-    public static Date getNextMonthBegin() throws Exception{
-        Date date=new Date();
+    public static Date getNextMonthBegin() throws Exception {
+        Date date = new Date();
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
         calendar.add(Calendar.MONTH, 1);
@@ -957,7 +911,7 @@ public class DateUtils
 
         Date date1 = calendar.getTime();
 
-        String yyyymmdd = format(date1,YYYY_MM_DD);
+        String yyyymmdd = format(date1, YYYY_MM_DD);
         yyyymmdd += " 00:00:00";
 
         date1 = getDate(yyyymmdd, YYYY_MM_DD_HH_MM_SS);
@@ -968,9 +922,9 @@ public class DateUtils
     /**
      * 判断当前时间是否在[startTime, endTime]区间，注意时间格式要一致
      *
-     * @param nowTime 当前时间
+     * @param nowTime   当前时间
      * @param startTime 开始时间
-     * @param endTime 结束时间
+     * @param endTime   结束时间
      * @return
      * @author
      */
@@ -998,31 +952,32 @@ public class DateUtils
 
     /**
      * 根据当前时间获取该时间所在周一以及周日的时间
+     *
      * @param
      */
-    public static String[] getMondayAndSunday(){
+    public static String[] getMondayAndSunday() {
         String[] week = new String[2];
 
         //获取今天是周几（周日开始）
         Calendar calendar = Calendar.getInstance();
-        int dayOfWeek =  calendar.get(Calendar.DAY_OF_WEEK);
+        int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
 
         //周一
         Date monday = null;
         //周日
         Date sunday = null;
 
-        if(dayOfWeek==1){
-            monday = DateUtils.addDayas(new Date(),-6);
-            sunday = DateUtils.addDayas(new Date(),0);
-        }else {
-            monday = DateUtils.addDayas(new Date(),2-dayOfWeek);
-            sunday = DateUtils.addDayas(new Date(),8-dayOfWeek);
+        if (dayOfWeek == 1) {
+            monday = DateUtils.addDayas(new Date(), -6);
+            sunday = DateUtils.addDayas(new Date(), 0);
+        } else {
+            monday = DateUtils.addDayas(new Date(), 2 - dayOfWeek);
+            sunday = DateUtils.addDayas(new Date(), 8 - dayOfWeek);
         }
 
-        week[0] = format(monday,YYYYMMDD);
+        week[0] = format(monday, YYYYMMDD);
 
-        week[1] = format(sunday,YYYYMMDD);
+        week[1] = format(sunday, YYYYMMDD);
 
         return week;
     }
@@ -1031,7 +986,7 @@ public class DateUtils
     /*
      * 比较两个时间点相差多少年。
      */
-    public static long compareTime(Date startDate,Date endDate){
+    public static long compareTime(Date startDate, Date endDate) {
 
         Calendar start = Calendar.getInstance();
         Calendar end = Calendar.getInstance();
@@ -1041,32 +996,27 @@ public class DateUtils
             start.setTime(startDate);
             end.setTime(endDate);
 
-            if(end.get(Calendar.YEAR)>start.get(Calendar.YEAR)){
-                int year=end.get(Calendar.YEAR)-start.get(Calendar.YEAR);
+            if (end.get(Calendar.YEAR) > start.get(Calendar.YEAR)) {
+                int year = end.get(Calendar.YEAR) - start.get(Calendar.YEAR);
 
-                if(year>1)
-                {
+                if (year > 1) {
                     return year;
                 }
 
-                if(end.get(Calendar.MONTH)+1>start.get(Calendar.MONTH)+1){
+                if (end.get(Calendar.MONTH) + 1 > start.get(Calendar.MONTH) + 1) {
                     return year;
 
-                }
-                else if(end.get(Calendar.MONTH)+1==start.get(Calendar.MONTH)+1)
-                {
-                    if(end.get(Calendar.DATE)>=start.get(Calendar.DATE)){
+                } else if (end.get(Calendar.MONTH) + 1 == start.get(Calendar.MONTH) + 1) {
+                    if (end.get(Calendar.DATE) >= start.get(Calendar.DATE)) {
                         return year;
-                    }else{
-                        return year-1;
+                    } else {
+                        return year - 1;
                     }
+                } else {
+                    return year - 1;
                 }
 
-                else{
-                    return year-1;
-                }
-
-            }else{
+            } else {
                 return 0;
             }
 
@@ -1080,12 +1030,12 @@ public class DateUtils
 
     /**
      * 获取两个时间段内的月数
+     *
      * @param end
      * @param begin
      * @return
      */
-    public static  int  getMonths(Date end,Date begin)
-    {
+    public static int getMonths(Date end, Date begin) {
 
 
         Calendar c1 = Calendar.getInstance();
@@ -1119,15 +1069,12 @@ public class DateUtils
         int monthsDiff = Math.abs(yearInterval * 12 + monthInterval);
 
 
-        return monthsDiff-1;
+        return monthsDiff - 1;
 
     }
 
 
-
-
-    public static  boolean  judgeNextMonth(Date end,Date begin)
-    {
+    public static boolean judgeNextMonth(Date end, Date begin) {
 
 
         Calendar c1 = Calendar.getInstance();
@@ -1140,7 +1087,7 @@ public class DateUtils
 
         int month1 = c1.get(Calendar.MONTH);
         int month2 = c2.get(Calendar.MONTH);
-        if (month1 < month2 ) {
+        if (month1 < month2) {
             return false;
         }
 
@@ -1149,8 +1096,7 @@ public class DateUtils
     }
 
 
-    public static int judgeOperDateAndNow(String startTime)
-    {
+    public static int judgeOperDateAndNow(String startTime) {
 
         Date start = GloubFunc.strToDateByWxDone(startTime);
 
@@ -1163,64 +1109,52 @@ public class DateUtils
         String t2 = df.format(new Date());
 
 
-        return (GloubFunc.initInt(t2,0)-GloubFunc.initInt(t1,0));
+        return (GloubFunc.initInt(t2, 0) - GloubFunc.initInt(t1, 0));
 
     }
 
 
-
-
-    public static boolean judegeTimeRange(String startTime,String endTime)
-    {
+    public static boolean judegeTimeRange(String startTime, String endTime) {
         Date start = GloubFunc.strToDateByWxDone(startTime);
 
         Date end = GloubFunc.strToDateByWxDone(endTime);
 
 
-        return  isEffectiveDate(new Date(),start ,end);
+        return isEffectiveDate(new Date(), start, end);
     }
 
 
-
-    public static boolean judgeTimeByStartDay(long s1,String s2)
-    {
+    public static boolean judgeTimeByStartDay(long s1, String s2) {
         Date start = GloubFunc.strToDateByWxDone(s2);
 
-        String sDay = GloubFunc.formatDate(start,"yyyyMMdd");
+        String sDay = GloubFunc.formatDate(start, "yyyyMMdd");
 
-        long day = GloubFunc.initLong(sDay,0);
+        long day = GloubFunc.initLong(sDay, 0);
 
-        if(day>=s1)
-        {
+        if (day >= s1) {
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }
 
 
-
-    public static boolean judgeTimeByEndDay(long s1,String s2)
-    {
+    public static boolean judgeTimeByEndDay(long s1, String s2) {
         Date start = GloubFunc.strToDateByWxDone(s2);
 
-        String sDay = GloubFunc.formatDate(start,"yyyyMMdd");
+        String sDay = GloubFunc.formatDate(start, "yyyyMMdd");
 
-        long day = GloubFunc.initLong(sDay,0);
+        long day = GloubFunc.initLong(sDay, 0);
 
-        if(day<=s1)
-        {
+        if (day <= s1) {
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }
 
 
-
-    public  static String  testit() throws  Exception{
+    public static String testit() throws Exception {
 
 
         List<String> li = null;
@@ -1233,53 +1167,45 @@ public class DateUtils
     }
 
 
-
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
 
 
-
-        try
-        {
+        try {
 
             testit();
 
             System.out.println(2);
 
+        } catch (Exception e) {
+            throw new RuntimeException("xxxx");
         }
-        catch (Exception e)
-        {
-            throw  new RuntimeException("xxxx") ;
-        }
-
-
 
 
     }
 
 
-
-    private static void computerSelection(int[] redBall,int[] userRedBall){
+    private static void computerSelection(int[] redBall, int[] userRedBall) {
         Random r = new Random();
         int index = -1;
-        for(int i=0;i<userRedBall.length;i++){
-            index = r.nextInt(redBall.length-i);
+        for (int i = 0; i < userRedBall.length; i++) {
+            index = r.nextInt(redBall.length - i);
             userRedBall[i] = redBall[index];
             int temp = redBall[index];
-            redBall[index] = redBall[redBall.length-i-1];
-            redBall[redBall.length-i-1] = temp;
+            redBall[index] = redBall[redBall.length - i - 1];
+            redBall[redBall.length - i - 1] = temp;
         }
     }
 
 
     /**
      * 两个时间相差的毫秒数
+     *
      * @param begin
      * @param end
      * @param patten
      * @return
      */
-    public static long subTractTime(String begin, String end, String patten) throws Exception{
+    public static long subTractTime(String begin, String end, String patten) throws Exception {
         Date b = getDate(begin, patten);
         Date e = getDate(end, patten);
 
@@ -1287,7 +1213,7 @@ public class DateUtils
     }
 
     public static long subTractTime(Date begin, Date end) throws Exception {
-        if(null == begin || null == end) {
+        if (null == begin || null == end) {
             throw new NullPointerException("begin or end time is null!");
         }
         return begin.getTime() - end.getTime();
@@ -1295,12 +1221,13 @@ public class DateUtils
 
     /**
      * 获取当前时间的0点0分0秒
-     * @param date  原时间
+     *
+     * @param date 原时间
      * @return 获取当前时间的0点0分0秒
      * @throws Exception
      */
-    public static Date getYMDDate(Date date) throws Exception{
-        return getDate(getDateString(date,YYYYMMDD), YYYYMMDD);
+    public static Date getYMDDate(Date date) throws Exception {
+        return getDate(getDateString(date, YYYYMMDD), YYYYMMDD);
     }
 
     /**
@@ -1320,10 +1247,11 @@ public class DateUtils
 
     /**
      * 获取当前时间的下个月5日（发券日）时间
+     *
      * @param date
      * @return
      */
-    public static Date getFifthNextMonth(Date date){
+    public static Date getFifthNextMonth(Date date) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
         calendar.add(Calendar.MONTH, 1);
@@ -1333,9 +1261,10 @@ public class DateUtils
 
     /**
      * 获取年份
+     *
      * @return
      */
-    public static String getCurrentYear(){
+    public static String getCurrentYear() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
         Date date = new Date();
         return sdf.format(date);
@@ -1348,7 +1277,7 @@ public class DateUtils
         return calendar.getTime();
     }
 
-    public static Date getLaterMonth(Date date,int offSet) {
+    public static Date getLaterMonth(Date date, int offSet) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
         calendar.add(Calendar.MONTH, offSet);
@@ -1356,63 +1285,49 @@ public class DateUtils
     }
 
 
-    public static int getMonthsByPy(Date start)
-    {
+    public static int getMonthsByPy(Date start) {
 
         String end = date2strByMonth(new Date());
 
         String st = date2strByMonth(start);
 
-        int s1 = GloubFunc.initInt(st,0);
+        int s1 = GloubFunc.initInt(st, 0);
 
-        int e1 =GloubFunc.initInt(end,0);
+        int e1 = GloubFunc.initInt(end, 0);
 
-        return e1-s1;
+        return e1 - s1;
     }
 
 
-    public static Date str2DateByday(String time)
-    {
+    public static Date str2DateByday(String time) {
         SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd");
-        Date date =null;
-        try
-        {
-            if (time != null)
-            {
+        Date date = null;
+        try {
+            if (time != null) {
                 date = df.parse(time);
             }
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return date;
     }
 
 
-
-    public static String date2strByMonth(Date time)
-    {
+    public static String date2strByMonth(Date time) {
         SimpleDateFormat df = new SimpleDateFormat("yyyyMM");
-        String date =null;
-        try
-        {
-            if (time != null)
-            {
+        String date = null;
+        try {
+            if (time != null) {
                 date = df.format(time);
             }
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return date;
     }
 
 
-    public static String  getPoductDay(String startTime){
-
-
+    public static String getPoductDay(String startTime) {
 
 
         Date start = GloubFunc.strToDateByWxDone(startTime);
@@ -1423,19 +1338,14 @@ public class DateUtils
     }
 
 
-    public static String date2StringByday(Date time)
-    {
+    public static String date2StringByday(Date time) {
         SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd");
         String date = "";
-        try
-        {
-            if (time != null)
-            {
+        try {
+            if (time != null) {
                 date = df.format(time);
             }
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return date;
@@ -1455,13 +1365,12 @@ public class DateUtils
     }
 
 
-
     public static boolean isEffectiveDate(Date startTime, Date endTime) {
         long start_Time = startTime.getTime();
         long end_time = endTime.getTime();
         Date date = new Date();
         long current = date.getTime();
-        if(current > end_time || current < start_Time){
+        if (current > end_time || current < start_Time) {
             return true;
         }
 
