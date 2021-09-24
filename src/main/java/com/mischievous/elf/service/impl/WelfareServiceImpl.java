@@ -30,9 +30,7 @@ public class WelfareServiceImpl implements WelfareService {
     public int insertHistoryRecord() throws Exception {
         int count, totalCount = 0;
         try {
-            String localFilePath = this.convertLocalFilePath(FileConstant.FILE_PATH);
-            String fileUrl = localFilePath + WelfareConstant.NEWEST_RECORD_TXT;
-            this.convertLocalFilePath(fileUrl);
+            String fileUrl = FileConstant.FILE_PATH + WelfareConstant.NEWEST_RECORD_TXT;
             String newestRecord = FileUtils.readFileOneLine(fileUrl, 0);
             if (GloubFunc.isEmpty(newestRecord)) {
                 return totalCount;
@@ -74,7 +72,7 @@ public class WelfareServiceImpl implements WelfareService {
                 contentList.add(l.toString());
             }
 
-            String localFilePath = this.convertLocalFilePath(FileConstant.FILE_PATH);
+            String localFilePath = FileConstant.FILE_PATH;
             FileUtils.writeFileContent(localFilePath + WelfareConstant.HISTORY_RECORD_TXT
                     , fileContent.toString(), true);
             FileUtils.writeFileContent(localFilePath + WelfareConstant.NEWEST_RECORD_TXT
@@ -92,8 +90,7 @@ public class WelfareServiceImpl implements WelfareService {
     public LotteryRecordDto queryNewestRecord() throws Exception {
         LotteryRecordDto lottery = null;
         try {
-            String localFilePath = this.convertLocalFilePath(FileConstant.FILE_PATH);
-            String fileUrl = localFilePath + WelfareConstant.NEWEST_RECORD_TXT;
+            String fileUrl = FileConstant.FILE_PATH + WelfareConstant.NEWEST_RECORD_TXT;
             String newestRecord = FileUtils.readFileOneLine(fileUrl, 0);
             if (GloubFunc.notEmpty(newestRecord)) {
                 lottery = this.convertStringToRecord(newestRecord);

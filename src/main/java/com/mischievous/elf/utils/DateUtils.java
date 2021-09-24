@@ -726,7 +726,7 @@ public class DateUtils {
         Calendar certificateCal = Calendar.getInstance();
         Calendar currentTimeCal = Calendar.getInstance();
         certificateCal.set(Integer.parseInt(year), Integer.parseInt(month) - 1, Integer.parseInt(day));
-        int yearAge = (currentTimeCal.get(currentTimeCal.YEAR)) - (certificateCal.get(certificateCal.YEAR));
+        int yearAge = (currentTimeCal.get(Calendar.YEAR)) - (certificateCal.get(Calendar.YEAR));
         certificateCal.set(currentTimeCal.get(Calendar.YEAR), Integer.parseInt(month) - 1, Integer.parseInt(day));
         int monthFloor = (currentTimeCal.before(certificateCal) ? 1 : 0);
 

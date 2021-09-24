@@ -6,7 +6,7 @@ package com.mischievous.elf.constant;
 public class FileConstant {
 
     //数据文件系统保存相对路径
-    public final static String FILE_PATH = "WEB-INF/static/doc/";
+    public final static String FILE_PATH = "src/main/resources/static/doc/";
 
     public final static String STATISTICS_EXCEL_SHEET = "total";
 

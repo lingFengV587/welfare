@@ -24,9 +24,9 @@ public class SpringMvcConfiguration implements WebMvcConfigurer {
     public ViewResolver resourceViewResolver() {
         InternalResourceViewResolver resolver = new InternalResourceViewResolver();
         //请求视图文件的前缀地址
-        resolver.setPrefix("/WEB-INF/templates/");
+        resolver.setPrefix("/resources/templates/");
         //请求视图文件的后缀
-        resolver.setSuffix(".jsp");
+        resolver.setSuffix(".html");
         return resolver;
     }
 
@@ -43,7 +43,7 @@ public class SpringMvcConfiguration implements WebMvcConfigurer {
      */
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/static/**").addResourceLocations("/WEB-INF/static/");
+        registry.addResourceHandler("/static/**").addResourceLocations("classpath:/resources/static/");
     }
 
     /**
