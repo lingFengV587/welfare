@@ -26,7 +26,7 @@ public class WelfareController {
     @RequestMapping(value = "/hello", method = RequestMethod.GET)
     public String sayHello() {
         logger.warn("===sayHello=");
-        return "hello";
+        return "index";
     }
 
     @RequestMapping(value = "/main", method = RequestMethod.GET)
