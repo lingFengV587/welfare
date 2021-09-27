@@ -1,22 +1,22 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html lang="en"
+>
 <head>
     <meta charset="UTF-8"/>
     <title>体彩</title>
     
-    <script type="text/javascript" src="../static/js/component/jquery-3.5.1.js"></script>
-    <script type="text/javascript" src="../static/js/business/welfare.js"></script>
-    <link rel="stylesheet" href="../static/css/model.css">
+    <script src="../static/js/component/jquery-3.5.1.js" type="text/javascript"></script>
+    <script src="../static/js/business/welfare.js" type="text/javascript"></script>
+    <link href="../static/css/model.css" rel="stylesheet">
 </head>
 <body>
-    <h2>最新一期中奖号码：</h2>
-    <div id="lotteryRecord">
-        <span name="newestRecord"></span>
-    </div>
-    <div>
-        <button type="button" class="btn" onclick="insertHistoryRecord()">更新</button>
-        <button type="button" class="btn" onclick="queryNewestRecord()">查询</button>
-    </div>
+<h2>最新一期中奖号码：</h2>
+<div id="lotteryRecord">
+    <span name="newestRecord"></span>
+</div>
+<div>
+    <button class="btn" onclick="insertHistoryRecord()" type="button">更新</button>
+    <button class="btn" onclick="queryNewestRecord()" type="button">查询</button>
+</div>
 </body>
 </html>

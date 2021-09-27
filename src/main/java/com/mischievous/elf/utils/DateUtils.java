@@ -15,44 +15,26 @@ import java.util.*;
 
 public class DateUtils {
 
-    private static final Logger log = LoggerFactory.getLogger(DateUtils.class);
-
     public static final String YYYYMMDDHHMMSS = "yyyyMMddHHmmss";
-
     public static final String YYYYMMDD = "yyyyMMdd";
-
     public static final String YYYY_MM_DD = "yyyy-MM-dd";
-
     public static final String YYYY_MM_DD_HH_MM = "yyyy-MM-dd HH:mm";
-
     public static final String YYYY_MM = "yyyy-MM";
-
     public static final String YYYY_MM_IN_CHINESE = "YYYY年MM月";
-
     public static final String YYYY_MM_DD_IN_CHINESE = "yyyy年MM月dd日";
-
     public static final String YYYY_MM_DD_HH_MM_SS_IN_CHINESE = "yyyy年MM月dd日 HH时mm分ss秒";
-
     public static final String YYYY_MM_DD_HH_MM_SS = "yyyy-MM-dd HH:mm:ss";
     public static final String YYYY_MM_DD_HH_MM_SS_PLUS = "yyyy-MM-dd+HH:mm:ss";
-
     public static final String YYYY_MM_DD_HH_MM_SS_S = "yyyy-MM-dd HH:mm:ss.S";
-
     public static final String YYYY_MM_DD_HH_MM_SS_SSS = "yyyy-MM-dd HH:mm:ss SSS";
-
     public static final String YYYY_MM_DD_HH_MM_SS_SSS_DOT = "yyyy-MM-dd HH:mm:ss.SSS";
-
     public static final String YYYY_MM_DD_HH_MM_SS_SLASH = "yyyy/MM/dd HH:mm:ss";
-
     public static final String YYYY_MM_DD_SLASH = "yyyy/MM/dd";
-
     public static final String YYYY_MM_DD_DOT = "yyyy.MM.dd";
-
     public static final String YYYYMMDD_HH_MM_SS = "yyyyMMdd HH:mm:ss";
-
     public static final String YYYYMMDDHHMMSSSSS = "yyyyMMddHHmmssSSS";
     public static final String HH_MM_SS = "HH:mm:ss";
-
+    private static final Logger log = LoggerFactory.getLogger(DateUtils.class);
     /**
      * 存储SimpleDateFormat对应格式发的String类型
      */
@@ -318,15 +300,6 @@ public class DateUtils {
         return nMinutesLater;
     }
 
-    public String getDate(int month) {
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-        Calendar cal = Calendar.getInstance();
-        cal.add(Calendar.MONTH, month);//对月份进行计算,减去12个月
-        Date date = cal.getTime();
-        return df.format(date);
-
-    }
-
     /**
      * 获取从startDate 到 endDate之间的日期列表
      *
@@ -523,7 +496,6 @@ public class DateUtils {
         return betweenDays(date, newDate);
     }
 
-
     /**
      * 判断某个时间time1是否在另一个时间time2之前
      *
@@ -630,7 +602,6 @@ public class DateUtils {
         }
         return season;
     }
-
 
     public static String[] getSeasonDate(Date date) {
         String[] season = new String[2];
@@ -781,7 +752,6 @@ public class DateUtils {
         return birthday;
     }
 
-
     public static int dayForWeek() throws Exception {
         Calendar c = Calendar.getInstance();
         c.setTime(new Date());
@@ -830,7 +800,6 @@ public class DateUtils {
         return result;
     }
 
-
     public static int getMonth(Date start, Date end) {
         if (start.after(end)) {
             Date t = start;
@@ -859,7 +828,6 @@ public class DateUtils {
         }
     }
 
-
     public static Date getNextMonthStartTime(int end) throws Exception {
 
         Date date = new Date();
@@ -878,7 +846,6 @@ public class DateUtils {
         return date1;
 
     }
-
 
     public static Date getNextMonthZDay(int end, int days) throws Exception {
 
@@ -917,7 +884,6 @@ public class DateUtils {
         date1 = getDate(yyyymmdd, YYYY_MM_DD_HH_MM_SS);
         return date1;
     }
-
 
     /**
      * 判断当前时间是否在[startTime, endTime]区间，注意时间格式要一致
@@ -981,7 +947,6 @@ public class DateUtils {
 
         return week;
     }
-
 
     /*
      * 比较两个时间点相差多少年。
@@ -1073,7 +1038,6 @@ public class DateUtils {
 
     }
 
-
     public static boolean judgeNextMonth(Date end, Date begin) {
 
 
@@ -1095,7 +1059,6 @@ public class DateUtils {
 
     }
 
-
     public static int judgeOperDateAndNow(String startTime) {
 
         Date start = GloubFunc.strToDateByWxDone(startTime);
@@ -1113,7 +1076,6 @@ public class DateUtils {
 
     }
 
-
     public static boolean judegeTimeRange(String startTime, String endTime) {
         Date start = GloubFunc.strToDateByWxDone(startTime);
 
@@ -1122,7 +1084,6 @@ public class DateUtils {
 
         return isEffectiveDate(new Date(), start, end);
     }
-
 
     public static boolean judgeTimeByStartDay(long s1, String s2) {
         Date start = GloubFunc.strToDateByWxDone(s2);
@@ -1138,7 +1099,6 @@ public class DateUtils {
         }
     }
 
-
     public static boolean judgeTimeByEndDay(long s1, String s2) {
         Date start = GloubFunc.strToDateByWxDone(s2);
 
@@ -1153,7 +1113,6 @@ public class DateUtils {
         }
     }
 
-
     public static String testit() throws Exception {
 
 
@@ -1165,7 +1124,6 @@ public class DateUtils {
 
         return "1";
     }
-
 
     public static void main(String[] args) {
 
@@ -1183,7 +1141,6 @@ public class DateUtils {
 
     }
 
-
     private static void computerSelection(int[] redBall, int[] userRedBall) {
         Random r = new Random();
         int index = -1;
@@ -1195,7 +1152,6 @@ public class DateUtils {
             redBall[redBall.length - i - 1] = temp;
         }
     }
-
 
     /**
      * 两个时间相差的毫秒数
@@ -1284,7 +1240,6 @@ public class DateUtils {
         return calendar.getTime();
     }
 
-
     public static int getMonthsByPy(Date start) {
 
         String end = date2strByMonth(new Date());
@@ -1297,7 +1252,6 @@ public class DateUtils {
 
         return e1 - s1;
     }
-
 
     public static Date str2DateByday(String time) {
         SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd");
@@ -1312,7 +1266,6 @@ public class DateUtils {
         return date;
     }
 
-
     public static String date2strByMonth(Date time) {
         SimpleDateFormat df = new SimpleDateFormat("yyyyMM");
         String date = null;
@@ -1326,7 +1279,6 @@ public class DateUtils {
         return date;
     }
 
-
     public static String getPoductDay(String startTime) {
 
 
@@ -1336,7 +1288,6 @@ public class DateUtils {
 
         return s;
     }
-
 
     public static String date2StringByday(Date time) {
         SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd");
@@ -1356,14 +1307,13 @@ public class DateUtils {
      */
     public static Integer getDayRemainingTime(Date currentDate) {
         LocalDateTime midnight = LocalDateTime.ofInstant(currentDate.toInstant(),
-                ZoneId.systemDefault()).plusDays(1).withHour(0).withMinute(0)
+                        ZoneId.systemDefault()).plusDays(1).withHour(0).withMinute(0)
                 .withSecond(0).withNano(0);
         LocalDateTime currentDateTime = LocalDateTime.ofInstant(currentDate.toInstant(),
                 ZoneId.systemDefault());
         long seconds = ChronoUnit.SECONDS.between(currentDateTime, midnight);
         return (int) seconds;
     }
-
 
     public static boolean isEffectiveDate(Date startTime, Date endTime) {
         long start_Time = startTime.getTime();
@@ -1375,5 +1325,14 @@ public class DateUtils {
         }
 
         return false;
+    }
+
+    public String getDate(int month) {
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.MONTH, month);//对月份进行计算,减去12个月
+        Date date = cal.getTime();
+        return df.format(date);
+
     }
 }

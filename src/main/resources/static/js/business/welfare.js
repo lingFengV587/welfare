@@ -1,9 +1,8 @@
 var WEB_ROOT;
-$(function ()
-{
+$(function () {
     var pathName = document.location.pathname;
     var index = pathName.substr(1).indexOf("/");
-    WEB_ROOT = pathName.substr(0,index+1);
+    WEB_ROOT = pathName.substr(0, index + 1);
 
     queryNewestRecord();
 });
@@ -11,7 +10,7 @@ $(function ()
 function insertHistoryRecord() {
     let qryUrl = WEB_ROOT + "/welfare/insertHistoryRecord";
     $.ajax({
-        url : qryUrl,
+        url: qryUrl,
         success: function (data) {
             alert("更新记录成功,更新记录数：" + data);
         },
@@ -24,7 +23,7 @@ function insertHistoryRecord() {
 function queryNewestRecord() {
     let qryUrl = WEB_ROOT + "/welfare/queryNewestRecord";
     $.ajax({
-        url : qryUrl,
+        url: qryUrl,
         success: function (data) {
             alert("查询成功!");
             $("#lotteryRecord").find("span[name='newestRecord']").text(data);

@@ -20,19 +20,17 @@ import java.util.Map;
  * @author lifang
  */
 public class BaseController {
-    private Logger logger = LoggerFactory.getLogger(BaseController.class);
+    public static final String CONTENTTYPE_HTML = "text/html";
+    public static final String CONTENTTYPE_JSON = "application/json";
+    public static final String CHARTSET_UTF8 = "utf-8";
     @Autowired
     protected HttpServletRequest request;
     @Autowired
     protected HttpSession session;
     @Autowired
     protected ServletContext servletContext;
-
     protected RequestContext requestContext;
-
-    public static final String CONTENTTYPE_HTML = "text/html";
-    public static final String CONTENTTYPE_JSON = "application/json";
-    public static final String CHARTSET_UTF8 = "utf-8";
+    private Logger logger = LoggerFactory.getLogger(BaseController.class);
 
     /**
      * 从Request获取参数

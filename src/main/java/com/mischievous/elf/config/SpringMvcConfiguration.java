@@ -1,15 +1,12 @@
 package com.mischievous.elf.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.*;
-import org.springframework.web.servlet.view.InternalResourceViewResolver;
-import org.thymeleaf.ITemplateEngine;
-import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.spring5.ISpringTemplateEngine;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
@@ -32,6 +29,7 @@ public class SpringMvcConfiguration implements WebMvcConfigurer {
     @Bean
     public ITemplateResolver templateResolver() {
         SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
+        templateResolver.setCharacterEncoding("UTF-8");
         templateResolver.setApplicationContext(applicationContext);
         //请求视图文件的前缀地址
         templateResolver.setPrefix("/WEB-INF/classes/templates/");
@@ -59,6 +57,7 @@ public class SpringMvcConfiguration implements WebMvcConfigurer {
 //        InternalResourceViewResolver resolver = new InternalResourceViewResolver();
         ThymeleafViewResolver resolver = new ThymeleafViewResolver();
         resolver.setTemplateEngine(templateEngine());
+        resolver.setOrder(1);
         resolver.setCharacterEncoding("UTF-8");
         return resolver;
     }
